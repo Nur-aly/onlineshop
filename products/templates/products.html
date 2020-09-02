@@ -20,23 +20,36 @@
 						<a href="{{product.get_absolute_url}}"><img alt="NO IMAGE" src="{{product.image.url}}"></a><br/>
 						<a href="{{product.get_absolute_url}}" class="title">{{product.name}}</a><br/>
 						<a href="#" class="category">{{product.category}}</a>
-						<p class="price">{{product.price}}</p>
+						<p class="price">${{product.price}}</p>
 					</div>
 				</li>
 				{% endfor %}
 			</ul>
 
-			<hr>
+			{% if is_paginated%}
 			<div class="pagination pagination-small pagination-centered">
 				<ul>
-					<li><a href="#">Prev</a></li>
-					<li class="active"><a href="#">1</a></li>
-					<li><a href="#">2</a></li>
-					<li><a href="#">3</a></li>
-					<li><a href="#">4</a></li>
-					<li><a href="#">Next</a></li>
+					<li class="page{% if not prev_url%} disabled {%endif%}">
+						<a href="{{prev_url}}">Prev</a>
+					</li>
+					{% for n in product_data.paginator.page_range %}
+
+					{% if product_data.number == n %}
+
+					<li class="active"><a href="?page={{n}}"> </a>{{n}}</li>
+					{% elif n > product_data.number|add:-3 and n < product_data.number|add:3 %}
+					<li>
+						<a href="?page={{n}}">{{n}}</a>
+					</li>
+					{%endif%}
+
+					{%endfor%}
+					<li class="{% if not next %} disabled {%endif%}">
+						<a href="{{next}}">Next</a>
+					</li>
 				</ul>
 			</div>
+			{% endif %}
 		</div>
 		<div class="span3 col">
 			<div class="block">
