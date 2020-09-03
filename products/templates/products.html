@@ -32,18 +32,18 @@
 					<li class="page{% if not prev_url%} disabled {%endif%}">
 						<a href="{{prev_url}}">Prev</a>
 					</li>
-					{% for n in product_data.paginator.page_range %}
-
-					{% if product_data.number == n %}
-
-					<li class="active"><a href="?page={{n}}"> </a>{{n}}</li>
-					{% elif n > product_data.number|add:-3 and n < product_data.number|add:3 %}
+				{% for n in products.paginator.page_range %}
+				{% if products.number == n %}
+					<li class="active">
+						<a href="?page={{n}}"> {{n}} </a>
+					</li>
+				{% elif n > products.number|add:-3 and n < products.number|add:3 %}
 					<li>
 						<a href="?page={{n}}">{{n}}</a>
 					</li>
-					{%endif%}
+				{%endif%}
 
-					{%endfor%}
+				{%endfor%}
 					<li class="{% if not next %} disabled {%endif%}">
 						<a href="{{next}}">Next</a>
 					</li>

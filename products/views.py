@@ -13,7 +13,7 @@ def product_list(request, category_slug=None):  # category_slug is needed to cre
     if category_slug:  # if slug is not empty and user chooses any of categories
         category = get_object_or_404(Category, slug=category_slug)  # we take category by slug
         products = category.products.filter(category=category)  # we take all products from initial category
-    pages_data = Paginator(products, 1)
+    pages_data = Paginator(products, 2)
     page_number = request.GET.get('page', 1)
     page = pages_data.get_page(page_number)
     is_paginated = page.has_other_pages()
@@ -29,8 +29,7 @@ def product_list(request, category_slug=None):  # category_slug is needed to cre
     context = {
         'category': category,
         'categories': categories,
-        'products': products,
-        'product_data': page,
+        'products': page,
         'is_paginated': is_paginated,
         'next': next,
         'prev_url': prev_url,
