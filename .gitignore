@@ -3,4 +3,3 @@ pycache/
 .idea/
 *.sh
 *.env
-local_settings.py
