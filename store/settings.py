@@ -14,10 +14,8 @@ from pathlib import Path
 from . import local_settings
 import dj_database_url
 
-
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
@@ -26,10 +24,9 @@ BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
 SECRET_KEY = local_settings.SECRET_KEY
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['sleepy-journey-57479.herokuapp.com', '127.0.0.1']
-
 
 # Application definition
 
@@ -43,7 +40,8 @@ INSTALLED_APPS = [
 
     'products',
     'cart',
-    'orders'
+    'orders',
+    'account',
 ]
 
 MIDDLEWARE = [
@@ -81,7 +79,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'store.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
@@ -104,6 +101,10 @@ MEDIA_URL = '/media/'
 
 CART_SESSION_ID = 'cart'
 
+LOGIN_REDIRECT_URL = 'product-list'
+LOGIN_URL = 'login'
+LOGOUT_URL = 'logout'
+
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
 
@@ -121,7 +122,6 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
-
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/
@@ -141,5 +141,3 @@ DATABASES['default'].update(db_from_env)
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
-
-

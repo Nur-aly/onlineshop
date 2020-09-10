@@ -3,6 +3,7 @@ from django.conf import settings
 from products.models import *
 
 
+
 class Cart(object):
     def __init__(self, request):
         self.session = request.session
@@ -47,7 +48,7 @@ class Cart(object):
         for item in cart.values():
             item['price'] = Decimal(item['price'])
             item['total_price'] = item['price']*item['quantity']
-        yield item
+            yield item
 
     def __len__(self):
         ''' Возвращает общая количество  товаров в корзине'''
