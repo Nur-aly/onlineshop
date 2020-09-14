@@ -1,12 +1,16 @@
-import rest_framework import serializers
+from rest_framework import serializers
 from products.models import Category, Product
+
 
 class CategoryListSerializer(serializers.ModelSerializer):
     class Meta:
         model = Category
         fields = ['name', 'slug']
 
+
 class ProductListSerializer(serializers.ModelSerializer):
+    category = serializers.SlugRelatedField(slug_field='name', read_only=True)
+
     class Meta:
         model = Product
         fields = ['category',
@@ -15,4 +19,4 @@ class ProductListSerializer(serializers.ModelSerializer):
                   'image',
                   'description',
                   'price',
-                  'created',]
+                  'created']

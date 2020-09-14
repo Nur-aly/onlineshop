@@ -18,7 +18,7 @@ class CategoryListView(APIView):
         product_serializer = ProductListSerializer(products, many=True)
 
         response_data = {
+            'categories': category_serializer.data,
             'products': product_serializer.data,
-            'categories': category_serializer.data
         }
-        return Response
+        return Response(response_data)
