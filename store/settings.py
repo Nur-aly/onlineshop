@@ -32,6 +32,7 @@ ALLOWED_HOSTS = ['sleepy-journey-57479.herokuapp.com', '127.0.0.1']
 
 INSTALLED_APPS = [
     'django.contrib.admin',
+    'account',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -41,7 +42,6 @@ INSTALLED_APPS = [
     'products',
     'cart',
     'orders',
-    'account',
 ]
 
 MIDDLEWARE = [
@@ -79,6 +79,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'store.wsgi.application'
 
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
